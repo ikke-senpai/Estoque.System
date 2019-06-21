@@ -1,0 +1,19 @@
+create table marca (id_marca int primary key auto_increment,nome_marca varchar(100));
+create table fornecedor(id_fornecedor int primary key auto_increment,nome_fornecedor varchar(120));
+create table tipo_produto(id_tipo int primary key auto_increment,tipo varchar(50));
+
+create table produto(id_produto int primary key auto_increment,
+nome_produ varchar(100),
+fk_id_tipo int,
+fk_id_marca int,
+fk_id_fornecedor int,
+preco double);
+
+alter table produto add foreign key(fk_id_tipo) references tipo_produto(id_tipo);
+alter table produto add foreign key(fk_id_marca) references marca(id_marca);
+alter table produto add foreign key(fk_id_fornecedor) references fornecedor(id_fornecedor);
+alter table produto add column (quant int);
+alter table produto add column (desc_produto longtext);
+
+
+select * from produto inner join tipo_produto on produto.fk_id_tipo=tipo_produto.id_tipo inner join fornecedor on produto.fk_id_fornecedor=fornecedor.id_fornecedor inner join marca on produto.fk_id_marca=marca.id_marca;
