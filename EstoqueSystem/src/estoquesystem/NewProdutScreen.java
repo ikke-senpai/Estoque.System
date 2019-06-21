@@ -294,7 +294,7 @@ public class NewProdutScreen extends javax.swing.JFrame {
         String desc = txtdesc.getText();
 
       if (db.newProduto(nome,fkidtipo, fkidmarca, fkidforne, preco, quant, desc)) {
-
+        
             JOptionPane.showMessageDialog(rootPane, "Cadastro realizado com sucesso !");
             txtproduto.setText("");
             txtquant.setText("");

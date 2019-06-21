@@ -57,7 +57,7 @@ public class StartScreen extends javax.swing.JFrame {
         for (int i = 0; i < prod.size(); i++) {
             p[0] = prod.get(i).getNome();
             p[1] = prod.get(i).getMarca();
-            p[2] = prod.get(i).getQuantidade();
+            p[2] = String.valueOf(prod.get(i).getQuantidade());
             p[3] = prod.get(i).getFornecedor();
 
             df.addRow(p);
@@ -679,7 +679,7 @@ public class StartScreen extends javax.swing.JFrame {
         
             if(nome.equals(db.produtoList.get(i).getNome()) ){
             
-        im.setFields(db.produtoList.get(i).getNome(),db.produtoList.get(i).getMarca(),db.produtoList.get(i).getFornecedor(),db.produtoList.get(i).getPreco(),"");
+        im.setFields(db.produtoList.get(i).getNome(),db.produtoList.get(i).getMarca(),db.produtoList.get(i).getFornecedor(),db.produtoList.get(i).getPreco(),db.produtoList.get(i).getQuant(),db.produtoList.get(i).getDesc());
         im.show();
             }
         }

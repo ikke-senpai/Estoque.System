@@ -9,12 +9,12 @@ public class Produto {
     private String nome_produto;
     private String marca_produto;
     private String fornece_produto;
-    private String quant_produto;
-    private String preco;
+    private int quant_produto;
+    private double preco;
     private String tipo;
     private String desc;
-    private String test;
-    public Produto(int id_produto,String nome, String id_tipo, String id_marca, String id_forne, String valor, String quant,String desc) {
+
+    public Produto(int id_produto,String nome, String id_tipo, String id_marca, String id_forne, double valor, int quant,String desc) {
         nome_produto = nome;
         marca_produto = id_marca;
         fornece_produto = id_forne;
@@ -23,13 +23,13 @@ public class Produto {
         this.id_produto=id_produto;
     }
     //SEM O ID
-  public Produto(String nome, String id_tipo, String id_marca, String id_forne, String valor, String quant,String desc) {
+  public Produto(String nome, String id_tipo, String id_marca, String id_forne, double valor, int quant,String desc) {
         nome_produto = nome;
         marca_produto = id_marca;
         fornece_produto = id_forne;
         quant_produto = quant;
         tipo = id_tipo;
-
+        
     }
     public Produto() {
 
@@ -38,7 +38,7 @@ public class Produto {
     public int getId(){
     return id_produto;
     }
-
+    
     public String getNome() {
         return nome_produto;
     }
@@ -66,20 +66,24 @@ public class Produto {
 
     }
 
-    public String getQuantidade() {
+    public int getQuantidade() {
         return quant_produto;
     }
-
-    public void setQuantidade(String q) {
+public int getQuant(){
+    return quant_produto;
+}
+    
+    
+    public void setQuantidade(int q) {
         quant_produto = q;
 
     }
 
-    public String getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(String q) {
+    public void setPreco(double q) {
         preco = q;
 
     }
@@ -91,6 +95,10 @@ public class Produto {
     public void setTipo(String q) {
         tipo = q;
 
+    }
+    
+    public String getDesc(){
+    return desc;
     }
 
 }
