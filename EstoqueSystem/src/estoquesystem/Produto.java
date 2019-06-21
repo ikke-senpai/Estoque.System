@@ -13,7 +13,7 @@ public class Produto {
     private String preco;
     private String tipo;
     private String desc;
-
+    private String test;
     public Produto(int id_produto,String nome, String id_tipo, String id_marca, String id_forne, String valor, String quant,String desc) {
         nome_produto = nome;
         marca_produto = id_marca;
@@ -29,7 +29,7 @@ public class Produto {
         fornece_produto = id_forne;
         quant_produto = quant;
         tipo = id_tipo;
-        
+
     }
     public Produto() {
 
@@ -38,7 +38,7 @@ public class Produto {
     public int getId(){
     return id_produto;
     }
-    
+
     public String getNome() {
         return nome_produto;
     }

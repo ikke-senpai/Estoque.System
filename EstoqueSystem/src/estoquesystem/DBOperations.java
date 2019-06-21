@@ -15,6 +15,26 @@ import javax.swing.JComboBox;
 /**
  *
  * @author borges
+ *
+ *QUERYS DO BANCO DE DADOS
+ *create table marca (id_marca int primary key auto_increment,nome_marca varchar(100));
+ *create table fornecedor(id_fornecedor int primary key auto_increment,nome_fornecedor varchar(120));
+ *create table tipo_produto(id_tipo int primary key auto_increment,tipo varchar(50));
+ *
+ *create table produto(id_produto int primary key auto_increment,
+ *nome_produ varchar(100),
+ *fk_id_tipo int,
+ *fk_id_marca int,
+ *fk_id_fornecedor int,
+ *preco double);
+ *
+ *alter table produto add foreign key(fk_id_tipo) references tipo_produto(id_tipo);
+ *alter table produto add foreign key(fk_id_marca) references marca(id_marca);
+ *alter table produto add foreign key(fk_id_fornecedor) references fornecedor(id_fornecedor);
+ *alter table produto add column (quant int);
+ *alter table produto add column (desc_produto longtext);
+
+
  */
 public class DBOperations {
 
@@ -80,7 +100,7 @@ public class DBOperations {
     public List populateComboBoxTipo() {
         List list = new ArrayList();
         try {
-           
+
             ResultSet rs = null;
             String sql = "SELECT * FROM tipo_produto";
             Connection con = op.getConnection();
@@ -101,18 +121,18 @@ public class DBOperations {
     public Map<String, Integer> getTipoMap() {
         return mapTipo;
     }
-    
+
   public List<Produto> populateTableEstoque(String filtro){
-  
+
       try {
           String sql=null;
-           ResultSet rs = null;  
+           ResultSet rs = null;
            Connection con = op.getConnection();
            if(filtro.equals("produto")){
            filtro="Mouse";
            }
            sql = "select * from produto inner join tipo_produto on produto.fk_id_tipo=tipo_produto.id_tipo inner join fornecedor on produto.fk_id_fornecedor=fornecedor.id_fornecedor inner join marca on produto.fk_id_marca=marca.id_marca where tipo= ? order by nome_produ ;";
-           PreparedStatement stm = con.prepareStatement(sql);  
+           PreparedStatement stm = con.prepareStatement(sql);
            stm.setString(1,filtro);
            rs = stm.executeQuery();
              produtoList.clear();
@@ -122,10 +142,10 @@ public class DBOperations {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-      
+
   return produtoList;
   }
-    
+
 
     public boolean newProduto(String nome, int id_tipo, int id_marca, int id_forne, double valor, int quant, String desc) {
         try {
@@ -150,7 +170,7 @@ public class DBOperations {
         }
 
     }
-    
+
     public void deleteProduto(int id){
      try {
            // produtoList.add(new Produto(nome, id_tipo, id_marca, id_forne, valor, quant, desc));
@@ -159,17 +179,17 @@ public class DBOperations {
             Connection con = op.getConnection();
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setInt(1, id);
-           
+
             stm.execute();
-            
+
 
         } catch (SQLException e) {
             e.printStackTrace();
-           
+
         }
-    
+
     }
-    
+
     public List<Produto> procurar(String filtro,String pesq){
     List<Produto> list=new ArrayList();
      try{
@@ -177,7 +197,7 @@ public class DBOperations {
         ResultSet rs=null;
         String sql=null;
         PreparedStatement stm=null;
-        
+
         if(filtro.equals("nome")){
         sql="select * from produto inner join tipo_produto on produto.fk_id_tipo=tipo_produto.id_tipo inner join fornecedor on produto.fk_id_fornecedor=fornecedor.id_fornecedor inner join marca on produto.fk_id_marca=marca.id_marca where nome_produ like ?";
         }
@@ -192,16 +212,16 @@ public class DBOperations {
        rs=stm.executeQuery();
        produtoList.clear();
        while(rs.next()){
-          
+
        produtoList.add(new Produto(rs.getString("nome_produ"),rs.getString("tipo"),rs.getString("nome_marca"),rs.getString("nome_fornecedor"),String.valueOf(rs.getDouble("preco")),String.valueOf(rs.getInt("quant")),rs.getString("desc_produto") ) );
-       
+
        }
-        
+
     }catch(SQLException e){e.printStackTrace();}
-    
+
      return produtoList;
     }
-    
-        
+
+
 
 }

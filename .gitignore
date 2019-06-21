@@ -1,0 +1,13 @@
+
+*.class
+EstoqueSystem/build.xml
+EstoqueSystem/build/built-jar.properties
+EstoqueSystem/nbproject/build-impl.xml
+EstoqueSystem/manifest.mf
+EstoqueSystem/nbproject/genfiles.properties
+EstoqueSystem/nbproject/private/config.properties
+EstoqueSystem/nbproject/private/private.properties
+EstoqueSystem/nbproject/project.properties
+EstoqueSystem/nbproject/project.xml
+EstoqueSystem/EstoqueSystem/
+EstoqueSystem/src/libs/mysql-connector-java-5.1.47-bin.jar
